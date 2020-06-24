@@ -5,6 +5,11 @@
 
 --nos da la full fecha al registrarse (current_timestamp)
 
+--modifica la columna de la tabla libros
+--alter table libros add FOREIGN KEY (autor_id) REFERENCES autores(autor_id) ON DELETE CASCADE
+--TRUNCATE table libros; resetea y elmina todos los registros, los autoincrement empieza del comienzo
+
+
         DROP DATABASE IF EXISTS libreria;
         CREATE DATABASE libreria;
         USE libreria;
@@ -29,8 +34,7 @@
             paginar INTEGER UNSIGNED,
             fecha_publicacion DATE NOT NULL,
             fecha_creacion DATETIME DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY (autor_id) REFERENCES autores(autor_id)
-            
+            FOREIGN KEY (autor_id) REFERENCES autores(autor_id) ON DELETE CASCADE
         );
 
         insert into autores (nombre,apellido,seudonimo,genero,fecha_nacimiento,pais_origen) 
